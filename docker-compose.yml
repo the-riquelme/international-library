@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   cambio-db:
-    image: mysql:5.7.22
+    image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -17,11 +17,11 @@ services:
       - 3308:3308
     expose:
       - 3308
-    networks:
-      - erudio-network
+    # networks:
+    #   - erudio-network
 
   book-db:
-    image: mysql:5.7.22
+    image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -36,9 +36,9 @@ services:
       - 3310:3310
     expose:
       - 3310
-    networks:
-      - erudio-network
+    # networks:
+    #   - erudio-network
 
-networks:
-  erudio-network:
-    driver: bridge
+    # networks:
+    #   erudio-network:
+    #     driver: bridge
