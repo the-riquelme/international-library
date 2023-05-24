@@ -14,14 +14,14 @@ Sistema de conversão de cambio de acordo com a cotação atual no banco de dado
 
 <h2 id="entities">👥&nbsp; Entidades </h2>
 
-<div style="display: flex; gap: 10px">
-  <img src="./.github/imgs/cambio-table.png" alt="Cambio Table" width="50%">
-  <img src="./.github/imgs/book-table.png" alt="Book Table" width="50%">
+<div style="display: flex; gap: 10px;">
+  <img src="./.github/imgs/cambio-table.png" alt="Cambio Table" width="50%" height="300px">
+  <img src="./.github/imgs/book-table.png" alt="Book Table" width="49%" height="300px">
 </div>
 
 ---
 
-<h2 id="microservices">📍&nbsp; Microserviçosços </h2>
+<h2 id="microservices">📍&nbsp; Microserviços </h2>
 
  <img src="./.github/imgs/BPMN 2.0 (1).png" alt="Services Diagram" width="100%">
 
