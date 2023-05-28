@@ -21,7 +21,7 @@ services:
       - erudio-network
 
   book-db:
-    image: mysql:5.7.22
+    image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
