@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.riquelme.bookservice.model.Book;
+import br.com.riquelme.bookservice.proxy.CambioProxy;
 import br.com.riquelme.bookservice.repository.BookRepository;
 
 @RestController
@@ -20,14 +21,23 @@ public class BookController {
 	@Autowired
 	private BookRepository repository;
 
+  @Autowired
+	private CambioProxy proxy;
+
   @GetMapping(value = "/{id}/{currency}")	
 	public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
-		var book = repository.getReferenceById(id);
+    var book = repository.getReferenceById(id);
 		if (book == null) throw new RuntimeException("Book not Found");
+				
+		var cambio = proxy.getCambio(book.getPrice(), "USD", currency);
 		
 		var port = environment.getProperty("local.server.port");
-		book.setEnvironment(port);
-    
+		book.setEnvironment(
+      "Book port: " + port + 
+      " Cambio Port " + cambio.getEnvironment()
+    );
+		book.setPrice(cambio.getConvertedValue());
+
 		return book;
 	}
 
