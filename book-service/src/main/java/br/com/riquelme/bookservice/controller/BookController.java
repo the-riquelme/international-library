@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.riquelme.bookservice.model.Book;
+import br.com.riquelme.bookservice.repository.BookRepository;
 
 @RestController
 @RequestMapping("book-service")
@@ -18,10 +19,18 @@ public class BookController {
 	@Autowired
 	private Environment environment;
 
+	@Autowired
+	private BookRepository repository;
+
   @GetMapping(value = "/{id}/{currency}")	
 	public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
-
-		return new Book(1L, "Oda", "One Piece", new Date(), 100D, currency, environment.getProperty("local.server.port"));
+		var book = repository.getReferenceById(id);
+		if (book == null) throw new RuntimeException("Book not Found");
+		
+		var port = environment.getProperty("local.server.port");
+		book.setEnvironment(port);
+    
+		return book;
 	}
 
 }
