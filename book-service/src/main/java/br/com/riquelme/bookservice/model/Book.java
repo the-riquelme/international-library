@@ -27,7 +27,8 @@ public class Book implements Serializable {
     Long id, 
     String author, 
     String title,
-    Date launchDate, Double price,
+    Date launchDate, 
+    Double price,
     String currency,
     String environment
   ) {
