@@ -13,8 +13,6 @@ services:
       MYSQL_DATABASE: cambio_service
       MYSQL_ROOT_HOST: '%'
       MYSQL_TCP_PORT: 3308
-    volumes:
-      - ./docker/volume_cambio_service:/var/lib/mysql
     ports:
       - 3308:3308
     expose:
@@ -22,29 +20,6 @@ services:
     networks:
       - erudio-network
 
-  cambio-service:
-    image: riquelme/cambio-service
-    build:
-      context: .
-      dockerfile: cambio-service/Dockerfile
-    restart: always
-    environment:
-      TZ: America/Sao_Paulo
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-      SPRING.DATASOURCE.URL: jdbc:mysql://cambio-db:3308/cambio_service?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
-      SPRING.DATASOURCE.USERNAME: root
-      SPRING.DATASOURCE.PASSWORD: admin123
-      SPRING.FLYWAY.URL: jdbc:mysql://cambio-db:3308/cambio_service?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
-      SPRING.FLYWAY.USER: root
-      SPRING.FLYWAY.PASSWORD: admin123
-    ports:
-      - 8000:8000
-    depends_on:
-      - cambio-db
-    networks:
-      - erudio-network
-      
 networks:
   erudio-network:
     driver: bridge
