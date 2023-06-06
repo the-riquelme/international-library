@@ -8,7 +8,7 @@
 
 <h2 id="about">💡&nbsp; Sobre o projeto</h2>
 
-Sistema de conversão de cambio de acordo com a cotação atual no banco de dados para uma livraria internacional, desenvido na arquitetura de micro serviços.
+Sistema de conversão de cambio de acordo com a cotação atual no banco de dados para uma livraria internacional, desenvolvido na arquitetura de micro serviços.
 
 ---
 
